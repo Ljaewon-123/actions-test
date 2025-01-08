@@ -1,11 +1,14 @@
-name: GitHub Actions Each Branchs
+name: GitHub Actions Demo
 on:
   push:
     branches:
       - dev-1
       - dev-2
+  pull_request:
+    branches:
+      - master
 jobs:
-  Job-For-Dev-1:
+  Push-Job-Dev-1:
     if: github.ref == 'refs/heads/dev-1'
     runs-on: ubuntu-latest
     steps:
@@ -13,8 +16,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "Running on dev-1 branch."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
 
-  Job-For-Dev-2:
+  Push-Job-Dev-2:
     if: github.ref == 'refs/heads/dev-2'
     runs-on: ubuntu-latest
     steps:
@@ -22,3 +28,18 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "Running on dev-2 branch."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+
+  PR-Job:
+    if: github.event_name == 'pull_request' && github.base_ref == 'master'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This job was triggered by a pull request to master branch."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "Running on master branch."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
