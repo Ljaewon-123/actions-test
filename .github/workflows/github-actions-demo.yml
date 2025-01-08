@@ -16,6 +16,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "Running on dev-1 branch."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
 
   Push-Job-Dev-2:
     if: github.ref == 'refs/heads/dev-2'
@@ -25,6 +28,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "Running on dev-2 branch."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
 
   PR-Job:
     if: github.event_name == 'pull_request' && github.base_ref == 'master'
@@ -34,3 +40,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "Running on master branch."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
