@@ -14,3 +14,6 @@ Github actions create for job after git push event
 - listen event: pull requests
 
 If pl-master uses a pull request on the master branch and the merge is confirmed, git actions will work.
+
+
+### Each event can be assigned a different task.
