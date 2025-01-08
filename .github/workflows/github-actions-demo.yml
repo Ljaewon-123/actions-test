@@ -19,6 +19,10 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Cat action-text.md in actions folder 
+        run: | 
+          cd ${{ github.workspace }}/actions 
+          cat action-text.md
 
   Push-Job-Dev-2:
     if: github.ref == 'refs/heads/dev-2'
@@ -31,6 +35,10 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Cat action-text.md in actions folder 
+        run: | 
+          cd ${{ github.workspace }}/actions 
+          cat action-text.md
 
   PR-Job:
     if: github.event_name == 'pull_request' && github.base_ref == 'master'
@@ -43,3 +51,7 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Cat action-text.md in actions folder 
+        run: | 
+          cd ${{ github.workspace }}/actions 
+          cat action-text.md
