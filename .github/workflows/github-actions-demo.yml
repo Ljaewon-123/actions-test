@@ -41,7 +41,7 @@ jobs:
           cat action-text.md
 
   PR-Job:
-    if: github.event_name == 'pull_request' && github.base_ref == 'master'
+    if: github.event_name == 'pull_request' && github.base_ref == 'master' && github.head_ref == 'pl-master'
     runs-on: ubuntu-latest
     steps:
       - run: echo "This job was triggered by a pull request to master branch."
